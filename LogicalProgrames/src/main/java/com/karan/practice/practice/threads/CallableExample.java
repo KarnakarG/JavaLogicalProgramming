@@ -5,29 +5,31 @@ import java.util.concurrent.*;
 public class CallableExample {
 
     public static void main(String[] args) {
-        ExecutorService es = Executors.newSingleThreadExecutor();
-        Future<Integer> f;
+        ExecutorService es = Executors.newFixedThreadPool(2);
+        Future<Integer> f = null;
         Future<Double> f2;
         Future<Integer> f3;
 
         System.out.println("Starting");
 
-        f = es.submit(new Sum(10));
-        f3 = es.submit(new Factorial(5));
+
+        f = es.submit(new Sum(100));
+
+
+        f3 = es.submit(new Factorial(15));
         f2 = es.submit(new Hypot(3, 4));
 
 
         try {
-            System.out.println("Integer : " + f.get());
-            System.out.println("Time " +f.get(10, TimeUnit.MILLISECONDS));
-             System.out.println("Integer... : " + f3.get());
-            System.out.println("Double : " + f2.get());
+
+            System.out.println("Integer Sum : " + f.get(10000, TimeUnit.MILLISECONDS));
+            System.out.println("Integer Fact... : " + f3.get());
+            System.out.println("Double Hypo: " + f2.get());
         } catch (InterruptedException exc) {
             System.out.println(exc);
         } catch (ExecutionException exc) {
             System.out.println(exc);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         es.shutdown();
@@ -49,6 +51,11 @@ class Sum implements Callable<Integer> {
             sum += i;
         }
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException in) {
+
+        }
         return sum;
     }
 }
@@ -62,6 +69,12 @@ class Hypot implements Callable<Double> {
     }
 
     public Double call() {
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException in) {
+
+        }
         return Math.sqrt((side1 * side1) + (side2 * side2));
     }
 
@@ -80,7 +93,7 @@ class Factorial implements Callable<Integer> {
             fact *= i;
         }
         try {
-            Thread.sleep(5000);
+            Thread.sleep(2000);
         } catch (InterruptedException in) {
 
         }

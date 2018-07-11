@@ -19,14 +19,15 @@ public class ReArrangeArray {
 
     public static void main(String[] args) {
 
-        int a[] = {-1, 1, 0, 3, 9, 8};
+        int a[] = {-1, 1, 0, 1, -1, 5 ,9, 8};
         System.out.println(Arrays.toString(a));
-        int b [] = reArrange(a,9+1);
+        int b[] = reArrange(a, 9 + 1);
 
         for (int v : b) {
-            if (v== 0)
+            if (v == 0)
                 v = -1;
-            System.out.print( v + "  "  );
+            System.out.print(v + "  ");
         }
+
     }
 }

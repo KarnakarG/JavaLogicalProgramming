@@ -1,6 +1,6 @@
 package com.karan.practice.practice.springcore.javabased;
 
-import com.epam.practice.practice.springcore.javabased.HelloWorld;
+import com.karan.practice.practice.springcore.javabased.HelloWorld;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

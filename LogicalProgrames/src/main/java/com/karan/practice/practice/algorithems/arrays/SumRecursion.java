@@ -7,8 +7,11 @@ public class SumRecursion {
         if (n <= 0) {
             return 0;
         } else {
+            System.out.print(a[n - 1] + "  ");
             return sumOfArray(a, n - 1) + a[n - 1];
         }
+
+
     }
 
     public static void main(String[] args) {
